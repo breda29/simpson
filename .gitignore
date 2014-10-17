@@ -1,0 +1,88 @@
+
+var key = "Name";
+var value = "simpsons";
+window.localStorage.setItem( key, value );// JavaScript Document
+
+var key= "Phone_number";
+var value ="02585825945";
+window.localStorage.setItem( key, value );// JavaScript Document
+
+var key= "Shoe_size";
+var value ="6";
+window.localStorage.setItem( key, value );// JavaScript Document
+
+var key= "Coffee";
+var value ="Latte";
+window.localStorage.setItem (key, value );// JavaScript Document
+
+var key= "House_number";
+var value ="29";
+window.localStorage.setItem( key, value );// JavaScript Document;
+
+var simpsons = {
+	"firstName": "Homer",
+	"lastName": "Simpson",
+	"address": {
+		"streetAddress": "742 Evergreen Terrace",
+		"city": "Springfield",
+		"state": "?"
+	}
+}
+
+console.log(
+			simpsons.firstName +
+			"is from" + 
+			simpsons.address.city);
+			
+window.localStorage.setItem( "name", JSON.stringify(simpsons));// JavaScript Document;
+
+window.localStorage.getItem("name");
+var name2= window.localStorage.getItem("name");
+
+console.log (name2); 
+var name3= JSON.parse(name2);
+
+console.log (name3.firstName);
+
+
+var paused_count =0;
+var resumed_count = 0;
+var launched_count = 0;
+
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+		console.log("device ready");
+    }
+	
+	function updateDisplay() {
+		$("#launched").text("Application launched: " + launched_count);
+		$("#resumed").text("Application paused: " + paused_count);
+		$("#paused").text("Application resumed: " + resumed_count);
+	}
+
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+		alert("device ready");
+        
+		document.addEventListener("resume", onResume, false);
+		document.addEventListener("pause", onPause, false);
+		
+		launched_count++;
+		updateDisplay();
+    }
+
+    // Handle the pause event
+    //
+    function onPause() {
+		alert("pause");
+		paused_count++;
+		updateDisplay();
+    }
+	
+	function onResume() {
+		alert("resume");
+		resumed_count++;
+		updateDisplay();
+    }
